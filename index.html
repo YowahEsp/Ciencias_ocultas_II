@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ciencias Ocultas — Ocultismo, Brujería y Fenómenos Paranormales</title>
+<meta name="description" content="Noticias en tiempo real sobre ocultismo, brujería, fenómenos paranormales, esoterismo y misticismo. Fuentes RSS y APIs en español e inglés.">
+<meta property="og:title" content="Ciencias Ocultas — Ocultismo & Paranormal">
+<meta property="og:description" content="Explora los misterios del ocultismo, brujería, exorcismo y fenómenos paranormales desde fuentes RSS y APIs en tiempo real.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://yowahesp.github.io/ocult_science/">
+<meta property="og:image" content="https://images.unsplash.com/photo-1509023464722-18d996393ca8?w=1200&h=630&fit=crop">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#8b0000">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=IM+Fell+English:ital,wght@0,400;1,400&family=Creepster&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+/* ============================================================
+   VARIABLES
+   ============================================================ */
+:root {
+  --bg:        #06030a;
+  --surface:   #0f0818;
+  --card:      #130c1e;
+  --card-h:    #1a1028;
+  --blood:     #8b0000;
+  --blood2:    #b00000;
+  --gold:      #c9a84c;
+  --gold2:     #e8c97a;
+  --text:      #ede5d8;
+  --muted:     #7a6e60;
+  --border:    rgba(139,0,0,0.30);
+  --border-g:  rgba(201,168,76,0.22);
+  --shadow:    rgba(0,0,0,0.75);
+  --radius:    8px;
+  --ease:      cubic-bezier(.4,0,.2,1);
+}
+
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'IM Fell English', Georgia, serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+  padding-bottom: 80px;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ── Atmospheric background ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 55% at 20% 20%, rgba(139,0,0,.09) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 50% at 80% 80%, rgba(139,0,0,.07) 0%, transparent 55%),
+    radial-gradient(ellipse 90% 40% at 50% 50%, rgba(60,0,80,.05) 0%, transparent 70%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='500'%3E%3Cpath d='M250,60 L265,120 L320,120 L275,155 L292,215 L250,180 L208,215 L225,155 L180,120 L235,120Z' fill='none' stroke='%238b0000' stroke-width='1' opacity='0.04'/%3E%3Ccircle cx='250' cy='140' r='90' fill='none' stroke='%238b0000' stroke-width='1' opacity='0.03'/%3E%3Ccircle cx='250' cy='140' r='115' fill='none' stroke='%238b0000' stroke-width='1' opacity='0.02'/%3E%3C/svg%3E");
+  background-size: auto, auto, auto, 500px 500px;
+  pointer-events: none;
+  z-index: -3;
+}
+
+/* ── Scanlines overlay ── */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg, transparent 0px, transparent 4px,
+    rgba(0,0,0,.12) 4px, rgba(0,0,0,.12) 5px
+  );
+  pointer-events: none;
+  z-index: -1;
+  opacity: .35;
+}
+
+/* ── Floating eyes ── */
+.eyes {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -2;
+}
+.eye {
+  position: absolute;
+  width: 22px; height: 11px;
+  background: rgba(139,0,0,.28);
+  border-radius: 50%;
+  box-shadow: 0 0 6px rgba(139,0,0,.3);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .eye { animation: blink 9s infinite alternate; }
+  @keyframes blink {
+    0%,40%,44%,48%,52%,56%,100% { height: 11px; }
+    42%,46%,50%,54% { height: 2px; }
+  }
+}
+
+/* ============================================================
+   SKIP LINK
+   ============================================================ */
+.skip-link {
+  position: absolute; top: -100px; left: 12px;
+  background: var(--blood); color: #fff;
+  padding: 8px 16px; font-size: .8rem;
+  border-radius: 0 0 var(--radius) var(--radius);
+  z-index: 9999; text-decoration: none;
+  transition: top .2s;
+}
+.skip-link:focus { top: 0; }
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.site-header {
+  text-align: center;
+  padding: 42px 20px 36px;
+  position: relative;
+  background: linear-gradient(180deg, rgba(139,0,0,.06) 0%, transparent 100%);
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 0;
+  overflow: hidden;
+}
+
+/* Decorative pentagram */
+.site-header::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 260px; height: 260px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cpath d='M100,15 L116,65 L168,65 L125,95 L141,145 L100,115 L59,145 L75,95 L32,65 L84,65Z' fill='none' stroke='%238b0000' stroke-width='1.2' opacity='0.12'/%3E%3Ccircle cx='100' cy='100' r='90' fill='none' stroke='%238b0000' stroke-width='1' opacity='0.07'/%3E%3C/svg%3E") center/contain no-repeat;
+  pointer-events: none;
+  opacity: .5;
+}
+
+.header-sigil {
+  font-size: .65rem;
+  color: var(--blood);
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+  font-family: 'IM Fell English', serif;
+  opacity: .7;
+}
+
+.site-title {
+  font-family: 'Cinzel Decorative', cursive;
+  font-size: clamp(1.7rem, 5.5vw, 3.2rem);
+  font-weight: 700;
+  color: var(--text);
+  text-shadow:
+    2px 2px 0 #000,
+    0 0 20px rgba(139,0,0,.5),
+    0 0 50px rgba(139,0,0,.2);
+  letter-spacing: 4px;
+  line-height: 1.15;
+  margin-bottom: 14px;
+  position: relative;
+}
+
+.site-title .accent { color: var(--blood); }
+
+.title-ornament {
+  color: var(--gold);
+  font-size: .7em;
+  opacity: .75;
+  margin: 0 12px;
+  text-shadow: 0 0 6px rgba(201,168,76,.5);
+}
+
+.site-tagline {
+  color: var(--muted);
+  font-style: italic;
+  font-size: clamp(.85rem, 2.2vw, 1rem);
+  max-width: 540px;
+  margin: 0 auto 6px;
+  line-height: 1.5;
+}
+
+.site-source-note {
+  color: var(--muted);
+  font-size: .68rem;
+  opacity: .55;
+  letter-spacing: .5px;
+  margin-top: 6px;
+}
+
+/* ============================================================
+   DIVIDER RUNE
+   ============================================================ */
+.rune-divider {
+  text-align: center;
+  padding: 10px 0;
+  color: var(--blood);
+  font-size: 1rem;
+  opacity: .45;
+  letter-spacing: 12px;
+  user-select: none;
+}
+
+/* ============================================================
+   TOOLBAR
+   ============================================================ */
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 1300px;
+  margin: 20px auto 14px;
+  padding: 0 16px;
+  flex-wrap: wrap;
+}
+
+/* Search */
+.search-wrap {
+  flex: 1; min-width: 190px;
+  position: relative;
+}
+.search-wrap i {
+  position: absolute; left: 13px; top: 50%;
+  transform: translateY(-50%);
+  color: var(--muted); font-size: .78rem;
+  pointer-events: none;
+}
+#search-input {
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-family: 'IM Fell English', serif;
+  font-size: .88rem;
+  padding: 10px 12px 10px 36px;
+  outline: none;
+  transition: border-color .2s var(--ease), box-shadow .2s var(--ease);
+}
+#search-input:focus {
+  border-color: var(--blood2);
+  box-shadow: 0 0 0 3px rgba(139,0,0,.12), 0 0 12px rgba(139,0,0,.15);
+}
+#search-input::placeholder { color: var(--muted); font-style: italic; }
+
+/* Lang tabs */
+.lang-tabs {
+  display: flex; gap: 3px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 3px;
+  flex-shrink: 0;
+}
+.lang-tab {
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  font-family: 'Cinzel Decorative', cursive;
+  font-size: .68rem;
+  padding: 7px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background .15s var(--ease), color .15s var(--ease);
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+.lang-tab:hover { color: var(--text); }
+.lang-tab.active {
+  background: linear-gradient(135deg, var(--blood), #500000);
+  color: #fff;
+  box-shadow: 0 0 10px rgba(139,0,0,.35);
+}
+
+/* Refresh btn */
+.refresh-btn {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  border-radius: var(--radius);
+  width: 40px; height: 40px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  font-size: .82rem;
+  transition: color .15s, border-color .15s;
+  flex-shrink: 0;
+}
+.refresh-btn:hover { color: var(--blood2); border-color: var(--blood2); }
+.refresh-btn.spinning i { animation: spin .85s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ============================================================
+   FILTER CHIPS
+   ============================================================ */
+.chips-bar {
+  max-width: 1300px;
+  margin: 0 auto 20px;
+  padding: 0 16px;
+  display: flex; gap: 6px;
+  flex-wrap: wrap; align-items: center;
+  min-height: 26px;
+}
+.chips-label {
+  font-size: .63rem; color: var(--muted);
+  text-transform: uppercase; letter-spacing: 1.5px;
+  flex-shrink: 0; padding-top: 1px;
+  font-family: 'IM Fell English', serif;
+}
+.chip {
+  background: transparent;
+  border: 1px solid rgba(139,0,0,.22);
+  border-radius: 99px;
+  color: var(--muted);
+  font-family: 'IM Fell English', serif;
+  font-size: .67rem;
+  padding: 3px 10px;
+  cursor: pointer;
+  transition: all .15s var(--ease);
+}
+.chip:hover { border-color: var(--blood); color: var(--text); }
+.chip.active {
+  background: rgba(139,0,0,.15);
+  border-color: var(--blood);
+  color: #ff8888;
+}
+
+/* ============================================================
+   NEWS GRID
+   ============================================================ */
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* ============================================================
+   CARD
+   ============================================================ */
+.card {
+  background: linear-gradient(160deg, var(--card), #0a0415);
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid rgba(139,0,0,.22);
+  display: flex; flex-direction: column;
+  position: relative;
+  transition: transform .25s var(--ease), box-shadow .25s var(--ease), border-color .25s var(--ease);
+  /* entry animation */
+  animation: cardIn .45s var(--ease) both;
+}
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.card:nth-child(2)  { animation-delay: .05s; }
+.card:nth-child(3)  { animation-delay: .10s; }
+.card:nth-child(4)  { animation-delay: .15s; }
+.card:nth-child(5)  { animation-delay: .20s; }
+.card:nth-child(6)  { animation-delay: .25s; }
+
+/* Inner pentagram watermark */
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cpath d='M40,8 L46,28 L68,28 L51,40 L57,60 L40,48 L23,60 L29,40 L12,28 L34,28Z' fill='none' stroke='%238b0000' stroke-width='.8' opacity='.06'/%3E%3C/svg%3E") center/80px no-repeat;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 40px rgba(0,0,0,.7), 0 0 20px rgba(139,0,0,.18);
+  border-color: rgba(139,0,0,.5);
+}
+
+.card-img {
+  width: 100%; height: 155px;
+  object-fit: cover;
+  border-bottom: 1px solid rgba(139,0,0,.25);
+  filter: grayscale(.35) contrast(1.08) brightness(.82);
+  transition: filter .3s var(--ease);
+  display: block;
+  position: relative; z-index: 1;
+}
+.card:hover .card-img {
+  filter: grayscale(0) contrast(1.05) brightness(.92);
+}
+
+.card-body {
+  padding: 14px;
+  display: flex; flex-direction: column;
+  gap: 8px; flex: 1;
+  position: relative; z-index: 1;
+}
+
+.card-meta {
+  display: flex; align-items: center;
+  justify-content: space-between; gap: 6px;
+}
+
+.card-date {
+  font-size: .68rem;
+  color: var(--blood2);
+  font-style: normal;
+  text-shadow: 0 0 4px rgba(139,0,0,.4);
+}
+
+.card-source {
+  font-size: .62rem;
+  color: var(--muted);
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.07);
+  border-radius: 3px;
+  padding: 1px 7px;
+  max-width: 140px;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+
+.card-title {
+  font-family: 'IM Fell English', serif;
+  font-size: .96rem;
+  line-height: 1.42;
+  color: var(--text);
+}
+
+.badge-verified {
+  display: inline-flex; align-items: center; gap: 2px;
+  background: rgba(139,0,0,.25);
+  border: 1px solid rgba(139,0,0,.4);
+  color: #ff9999;
+  font-size: .52rem;
+  padding: 1px 5px;
+  border-radius: 2px;
+  vertical-align: middle;
+  margin-left: 6px;
+  font-family: 'IM Fell English', serif;
+  font-style: normal;
+  letter-spacing: .3px;
+}
+
+.badge-rss {
+  display: inline-flex; align-items: center;
+  background: rgba(201,168,76,.15);
+  border: 1px solid rgba(201,168,76,.3);
+  color: var(--gold2);
+  font-size: .52rem;
+  padding: 1px 5px;
+  border-radius: 2px;
+  vertical-align: middle;
+  margin-left: 6px;
+  font-family: 'IM Fell English', serif;
+  font-style: normal;
+  letter-spacing: .3px;
+}
+
+.card-desc {
+  font-size: .82rem;
+  font-style: italic;
+  color: var(--muted);
+  line-height: 1.56;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  flex-grow: 1;
+}
+
+.card-actions {
+  display: flex; align-items: center;
+  gap: 10px; flex-wrap: wrap;
+  margin-top: 2px;
+}
+
+.read-more {
+  color: var(--blood2);
+  text-decoration: none;
+  font-size: .78rem;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 1px;
+  transition: text-shadow .15s, color .15s;
+  white-space: nowrap;
+}
+.read-more:hover {
+  color: #ff6666;
+  text-shadow: 0 0 8px rgba(139,0,0,.6);
+  text-decoration: underline;
+}
+.read-more:focus-visible {
+  outline: 2px solid var(--blood);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.translate-btn {
+  background: transparent;
+  border: 1px solid rgba(139,0,0,.35);
+  color: var(--muted);
+  font-family: 'IM Fell English', serif;
+  font-size: .68rem;
+  font-style: italic;
+  padding: 3px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all .15s var(--ease);
+  display: inline-flex; align-items: center; gap: 5px;
+}
+.translate-btn:hover:not(:disabled) {
+  background: rgba(139,0,0,.15);
+  border-color: var(--blood2);
+  color: #ff9999;
+}
+.translate-btn:disabled { opacity: .4; cursor: not-allowed; }
+
+/* ============================================================
+   STATES
+   ============================================================ */
+.state-msg {
+  grid-column: 1 / -1;
+  display: flex; flex-direction: column;
+  align-items: center; gap: 14px;
+  padding: 52px 16px;
+  text-align: center;
+  color: var(--muted);
+  font-size: .9rem;
+  font-style: italic;
+}
+.state-msg i { font-size: 1.8rem; opacity: .45; }
+.state-msg.error { color: #ff7777; }
+
+/* ============================================================
+   LOAD MORE
+   ============================================================ */
+.load-more-wrap {
+  max-width: 1300px;
+  margin: 30px auto 0;
+  padding: 0 16px;
+  text-align: center;
+}
+
+#load-more-btn {
+  background: linear-gradient(135deg, #8b0000, #500000);
+  color: #fff;
+  border: 1px solid rgba(139,0,0,.5);
+  border-radius: 30px;
+  font-family: 'Cinzel Decorative', cursive;
+  font-size: .75rem;
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  padding: 13px 38px;
+  cursor: pointer;
+  transition: box-shadow .2s var(--ease), transform .15s var(--ease), background .2s;
+  text-shadow: 1px 1px 2px #000;
+}
+#load-more-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #a50000, #6a0000);
+  box-shadow: 0 0 24px rgba(139,0,0,.4), 0 6px 16px rgba(0,0,0,.4);
+  transform: translateY(-2px);
+}
+#load-more-btn:disabled {
+  background: linear-gradient(135deg, #2a2a2a, #111);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.site-footer {
+  max-width: 1300px;
+  margin: 52px auto 0;
+  padding: 18px 16px;
+  text-align: center;
+  color: var(--muted);
+  font-size: .68rem;
+  font-style: italic;
+  border-top: 1px solid var(--border);
+  opacity: .6;
+}
+
+/* ============================================================
+   SCROLLBAR
+   ============================================================ */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: rgba(139,0,0,.4); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--blood2); }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 600px) {
+  .card:hover { transform: none; }
+  .lang-tabs { flex-wrap: wrap; }
+}
+
+/* ============================================================
+   UTILS
+   ============================================================ */
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; overflow: hidden; clip: rect(0,0,0,0);
+  white-space: nowrap; border: 0;
+}
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Saltar al contenido</a>
+
+<!-- ── Floating eyes ── -->
+<div class="eyes" aria-hidden="true">
+  <div class="eye" style="top:13%;left:8%"></div>
+  <div class="eye" style="top:22%;left:87%"></div>
+  <div class="eye" style="top:62%;left:6%"></div>
+  <div class="eye" style="top:73%;left:82%"></div>
+  <div class="eye" style="top:44%;left:4%"></div>
+  <div class="eye" style="top:36%;left:92%"></div>
+  <div class="eye" style="top:55%;left:50%"></div>
+</div>
+
+<!-- ======================== HEADER ======================== -->
+<header class="site-header">
+  <p class="header-sigil">✦ &ensp; Sapientia Arcana &ensp; ✦</p>
+  <h1 class="site-title">
+    <span class="title-ornament" aria-hidden="true">✬</span>
+    <span class="accent">Ciencias</span> Ocultas
+    <span class="title-ornament" aria-hidden="true">✬</span>
+  </h1>
+  <p class="site-tagline">Explora los misterios del ocultismo, la brujería, el esoterismo y los fenómenos paranormales</p>
+  <p class="site-source-note"><i class="fas fa-rss" aria-hidden="true"></i> Noticias en tiempo real desde APIs y fuentes RSS especializadas</p>
+</header>
+
+<div class="rune-divider" aria-hidden="true">ᚠ &ensp; ᚢ &ensp; ᚦ &ensp; ᚨ &ensp; ᚱ &ensp; ᚲ</div>
+
+<!-- ======================== TOOLBAR ======================== -->
+<div class="toolbar">
+  <div class="search-wrap">
+    <i class="fas fa-search" aria-hidden="true"></i>
+    <input
+      type="search"
+      id="search-input"
+      placeholder="Buscar en las noticias…"
+      aria-label="Buscar noticias"
+      autocomplete="off"
+    >
+  </div>
+
+  <div class="lang-tabs" role="group" aria-label="Seleccionar idioma">
+    <button class="lang-tab active" data-mode="es" aria-pressed="true">🕯 Español</button>
+    <button class="lang-tab"        data-mode="en" aria-pressed="false">☽ English</button>
+    <button class="lang-tab"        data-mode="both" aria-pressed="false">⚡ Ambos</button>
+  </div>
+
+  <button class="refresh-btn" id="refresh-btn" title="Actualizar noticias" aria-label="Actualizar noticias">
+    <i class="fas fa-sync-alt"></i>
+  </button>
+</div>
+
+<!-- ======================== FILTER CHIPS ======================== -->
+<div class="chips-bar" id="chips-bar" aria-label="Filtrar por fuente">
+  <span class="chips-label">Fuente:</span>
+</div>
+
+<!-- ======================== MAIN ======================== -->
+<main id="main">
+
+  <!-- ES GRID -->
+  <section id="col-es" aria-label="Noticias en español">
+    <div class="news-grid" id="news-es">
+      <div class="state-msg">
+        <i class="fas fa-skull fa-pulse" aria-hidden="true"></i>
+        <span>Invocando noticias en español…</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- EN GRID -->
+  <section id="col-en" aria-label="News in English" style="display:none; margin-top:20px;">
+    <div class="news-grid" id="news-en">
+      <div class="state-msg">
+        <i class="fas fa-skull fa-pulse" aria-hidden="true"></i>
+        <span>Summoning news in English…</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="load-more-wrap">
+    <button id="load-more-btn" style="display:none">Cargar más visiones</button>
+  </div>
+
+</main>
+
+<!-- ======================== FOOTER ======================== -->
+<footer class="site-footer">
+  <p>
+    Ciencias Ocultas &copy; <span id="yr"></span> &mdash;
+    Contenido recopilado automáticamente desde APIs y fuentes RSS públicas.
+    Solo con fines informativos. Las teorías expresadas no representan la opinión del sitio.
+  </p>
+</footer>
+
+<!-- ======================== SCRIPT ======================== -->
+<script>
+'use strict';
+
+/* ── API KEYS ─────────────────────────────────────────── */
+const API = {
+  NEWSDATA:   'pub_6b66eb748f3b402fb0444a5a1e7f342a',
+  THENEWS:    'WoleUZzFljC8VUfbMieN3CckhyVQkjq5pUmjPvkm',
+  CURRENTS:   'u_sEzOt9_SvMBgHcpGQMxTtWiUOk6em5XwBJ0Y0s_FiJOiuD',
+  MEDIASTACK: 'f8937b79760dc862781b4969cdff9d06'
+};
+
+/* ── CONSTANTS ────────────────────────────────────────── */
+const PROXY        = 'https://corsproxy.io/?url=';
+const FALLBACK_IMG = 'https://images.unsplash.com/photo-1509023464722-18d996393ca8?w=400&h=250&fit=crop&auto=format&q=80';
+const CACHE_TTL    = 30 * 60 * 1000;
+const PER_PAGE     = 12;
+
+/* ── OCCULT FILTER KEYWORDS ───────────────────────────── */
+const OCCULT_KW = new Set([
+  // ES
+  'ocultismo','brujería','brujo','bruja','hechizo','ritual','satán','demonio',
+  'fantasma','espíritu','aparición','casa embrujada','exorcismo','paranormal',
+  'sobrenatural','psíquico','telepatía','clarividencia','ouija','poltergeist',
+  'esoterismo','misticismo','alquimia','tarot','astral','medium','aura',
+  'nigromancia','magia','wicca','pagano','druida','hermetismo','runa','grimorio',
+  'sabbath','aquelarre','nigromante','ánima','espectro','posesión','invocación',
+  // EN
+  'occult','witchcraft','witch','spell','satan','demon','ghost','spirit',
+  'haunted','exorcism','psychic','telepathy','clairvoyance','esoteric',
+  'mysticism','alchemy','astrology','pagan','wicca','magic','supernatural',
+  'paranormal','cryptid','mystical','hermetism','rune','grimoire','necromancy',
+  'divination','voodoo','sigil','coven','druid','shaman','ritual','séance'
+]);
+
+const EXCLUDE_KW = new Set([
+  'hot dog','hotdog','perro caliente','fútbol','soccer','basketball',
+  'tennis','golf','football','nfl','nba','mlb','nhl'
+]);
+
+/* ── RSS FEEDS ────────────────────────────────────────── */
+const RSS_ES = [
+  { url: 'https://wildhunt.org/feed',                     name: 'The Wild Hunt'        },
+  { url: 'https://occult-world.com/feed/',                name: 'Occult World'         },
+  { url: 'https://mysteriousuniverse.org/feed/',          name: 'Mysterious Universe'  },
+  { url: 'https://www.coasttocoastam.com/feed/',          name: 'Coast to Coast AM'    },
+  { url: 'https://www.dailygrail.com/feed/',              name: 'The Daily Grail'      },
+];
+
+const RSS_EN = [
+  { url: 'https://wildhunt.org/feed',                     name: 'The Wild Hunt'        },
+  { url: 'https://occult-world.com/feed/',                name: 'Occult World'         },
+  { url: 'https://mysteriousuniverse.org/feed/',          name: 'Mysterious Universe'  },
+  { url: 'https://www.coasttocoastam.com/feed/',          name: 'Coast to Coast AM'    },
+  { url: 'https://www.dailygrail.com/feed/',              name: 'The Daily Grail'      },
+  { url: 'https://www.llewellyn.com/rss.php',             name: 'Llewellyn'            },
+  { url: 'https://www.fatemag.com/feed/',                 name: 'Fate Magazine'        },
+];
+
+/* ── STATE ────────────────────────────────────────────── */
+let allEs = [], allEn = [];
+let filteredEs = [], filteredEn = [];
+let page = 1;
+let isLoading = false;
+let mode = localStorage.getItem('ocult_mode') || 'es';
+let searchQuery = '';
+let activeFilters = new Set();
+
+/* ── DOM ──────────────────────────────────────────────── */
+const gridEs      = document.getElementById('news-es');
+const gridEn      = document.getElementById('news-en');
+const colEs       = document.getElementById('col-es');
+const colEn       = document.getElementById('col-en');
+const loadMoreBtn = document.getElementById('load-more-btn');
+const searchInput = document.getElementById('search-input');
+const chipsBar    = document.getElementById('chips-bar');
+const refreshBtn  = document.getElementById('refresh-btn');
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+/* ── ESCAPE (XSS) ─────────────────────────────────────── */
+const E = {
+  html(s) {
+    return String(s ?? '')
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+      .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+  },
+  attr(s) { return String(s ?? '').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+};
+
+/* ── CACHE ────────────────────────────────────────────── */
+const cache = {
+  set(k, d) {
+    try { localStorage.setItem(k, JSON.stringify({ ts: Date.now(), data: d })); } catch(_) {}
+  },
+  get(k) {
+    try {
+      const raw = localStorage.getItem(k);
+      if (!raw) return null;
+      const o = JSON.parse(raw);
+      if (Date.now() - o.ts > CACHE_TTL) { localStorage.removeItem(k); return null; }
+      return o.data;
+    } catch(_) { return null; }
+  },
+  clear(k) { try { localStorage.removeItem(k); } catch(_) {} }
+};
+
+/* ── KEYWORD FILTER ───────────────────────────────────── */
+function isOccult(title = '', desc = '') {
+  const tl = title.toLowerCase();
+  const dl = desc.toLowerCase();
+  for (const w of EXCLUDE_KW) { if (tl.includes(w) || dl.includes(w)) return false; }
+  for (const w of OCCULT_KW)  { if (tl.includes(w) || dl.includes(w)) return true;  }
+  return false;
+}
+
+/* ── NORMALIZER ───────────────────────────────────────── */
+function norm(raw) {
+  return {
+    title:       (raw.title        || '').trim() || 'Sin título',
+    url:         (raw.url          || raw.link  || '').trim(),
+    publishedAt: raw.publishedAt   || raw.published_at || raw.published || new Date().toISOString(),
+    description: (raw.description  || raw.content || '').replace(/<[^>]*>/g, '').trim(),
+    urlToImage:  raw.urlToImage    || raw.image || raw.image_url || '',
+    source:      { name: (raw.source?.name || raw.source || raw.source_id || 'Desconocido').trim() },
+    sourceType:  raw.sourceType || 'API'
+  };
+}
+
+/* ── RSS HELPERS ──────────────────────────────────────── */
+function rssImage(item) {
+  const mc = item.querySelector('media\\:content, content');
+  if (mc) { const u = mc.getAttribute('url'); if (u) return u; }
+  const enc = item.querySelector('enclosure[type^="image"]');
+  if (enc) { const u = enc.getAttribute('url'); if (u) return u; }
+  const desc = item.querySelector('description, summary')?.textContent || '';
+  const m = desc.match(/<img[^>]+src=["']([^"']+)["']/i);
+  return m ? m[1] : '';
+}
+
+function rssText(item) {
+  const raw = item.querySelector('description, summary, content')?.textContent || '';
+  const d = document.createElement('div');
+  d.innerHTML = raw;
+  const t = d.textContent.trim();
+  return t.length > 280 ? t.slice(0, 280) + '…' : t;
+}
+
+/* ── FETCHERS ─────────────────────────────────────────── */
+
+async function fetchNewsdata(lang) {
+  const q = lang === 'es'
+    ? 'ocultismo OR brujería OR paranormal OR esoterismo OR satán OR tarot'
+    : 'occult OR witchcraft OR paranormal OR esoteric OR ghost OR psychic';
+  const url = `https://newsdata.io/api/1/news?apikey=${API.NEWSDATA}&q=${encodeURIComponent(q)}&language=${lang}&image=1`;
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`Newsdata ${res.status}`);
+  const data = await res.json();
+  return (data.results || [])
+    .filter(a => isOccult(a.title, a.description))
+    .map(a => norm({
+      title: a.title, url: a.link, publishedAt: a.pubDate,
+      description: a.description, urlToImage: a.image_url,
+      source: { name: a.source_name || a.source_id || 'Newsdata' },
+      sourceType: 'API'
+    }));
+}
+
+async function fetchTheNews(lang) {
+  const q = lang === 'es' ? 'ocultismo brujería paranormal' : 'occult witchcraft paranormal';
+  const locale = lang === 'es' ? 'es,mx,ar' : 'us,gb,au,ca';
+  const url = `https://api.thenewsapi.com/v1/news/all?api_token=${API.THENEWS}&search=${encodeURIComponent(q)}&locale=${locale}&limit=3&language=${lang}`;
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`TheNewsAPI ${res.status}`);
+  const data = await res.json();
+  return (data.data || [])
+    .filter(a => isOccult(a.title, a.description))
+    .map(a => norm({
+      title: a.title, url: a.url, publishedAt: a.published_at,
+      description: a.description, urlToImage: a.image_url,
+      source: { name: typeof a.source === 'string' ? a.source : (a.source?.name || 'TheNewsAPI') },
+      sourceType: 'API'
+    }));
+}
+
+async function fetchCurrents(lang) {
+  const q = lang === 'es' ? 'ocultismo brujería paranormal tarot' : 'occult witchcraft ghost paranormal';
+  const target = `https://api.currentsapi.services/v1/search?apiKey=${API.CURRENTS}&keywords=${encodeURIComponent(q)}&language=${lang}`;
+  const res = await fetch(PROXY + encodeURIComponent(target));
+  if (!res.ok) throw new Error(`Currents ${res.status}`);
+  const data = await res.json();
+  return (data.news || [])
+    .filter(a => isOccult(a.title, a.description))
+    .map(a => norm({
+      title: a.title, url: a.url, publishedAt: a.published,
+      description: a.description,
+      urlToImage: (!a.image || a.image === 'None') ? '' : a.image,
+      source: { name: a.author || 'Currents API' },
+      sourceType: 'API'
+    }));
+}
+
+async function fetchMediastack(lang) {
+  const kw = lang === 'es'
+    ? 'ocultismo,brujeria,paranormal,esoterismo'
+    : 'occult,witchcraft,paranormal,esoteric';
+  const target = `http://api.mediastack.com/v1/news?access_key=${API.MEDIASTACK}&keywords=${kw}&languages=${lang}&limit=25&sort=published_desc`;
+  const res = await fetch(PROXY + encodeURIComponent(target));
+  if (!res.ok) throw new Error(`Mediastack ${res.status}`);
+  const data = await res.json();
+  return (data.data || [])
+    .filter(a => isOccult(a.title, a.description))
+    .map(a => norm({
+      title: a.title, url: a.url, publishedAt: a.published_at,
+      description: a.description, urlToImage: a.image,
+      source: { name: a.source || 'Mediastack' },
+      sourceType: 'API'
+    }));
+}
+
+async function fetchRSS(feed) {
+  const res = await fetch(PROXY + encodeURIComponent(feed.url));
+  if (!res.ok) throw new Error(`RSS ${feed.name} ${res.status}`);
+  const xml = await res.text();
+  const doc = new DOMParser().parseFromString(xml, 'application/xml');
+  if (doc.querySelector('parsererror')) throw new Error(`RSS parse: ${feed.name}`);
+  return Array.from(doc.querySelectorAll('item, entry'))
+    .map(item => {
+      const link = (
+        item.querySelector('link')?.getAttribute('href') ||
+        item.querySelector('link')?.textContent || ''
+      ).trim();
+      const pub =
+        item.querySelector('pubDate')?.textContent ||
+        item.querySelector('published')?.textContent ||
+        item.querySelector('updated')?.textContent || '';
+      const title = item.querySelector('title')?.textContent || '';
+      const desc  = rssText(item);
+      if (!isOccult(title, desc)) return null;
+      return norm({
+        title, url: link, publishedAt: pub,
+        description: desc, urlToImage: rssImage(item),
+        source: { name: feed.name },
+        sourceType: 'RSS'
+      });
+    })
+    .filter(Boolean);
+}
+
+/* ── AGGREGATE ────────────────────────────────────────── */
+async function fetchAll(lang, forceRefresh = false) {
+  const key = `ocult_v2_${lang}`;
+  if (!forceRefresh) {
+    const hit = cache.get(key);
+    if (hit) { console.info(`[Cache] ${lang} (${hit.length})`); return hit; }
+  } else { cache.clear(key); }
+
+  const rss = lang === 'es' ? RSS_ES : RSS_EN;
+  const tasks = [
+    fetchNewsdata(lang),
+    fetchTheNews(lang),
+    fetchCurrents(lang),
+    fetchMediastack(lang),
+    ...rss.map(fetchRSS)
+  ];
+
+  const settled = await Promise.allSettled(tasks);
+  settled.forEach((r, i) => {
+    if (r.status === 'rejected') console.warn(`Source ${i} failed:`, r.reason?.message);
+  });
+
+  const all = settled.filter(r => r.status === 'fulfilled').flatMap(r => r.value);
+
+  const seen = new Set();
+  const unique = all.filter(a => {
+    if (!a.url || !a.title) return false;
+    const k = a.title.toLowerCase().replace(/\W+/g, '').slice(0, 42);
+    if (!k || seen.has(k)) return false;
+    seen.add(k);
+    return true;
+  });
+
+  unique.sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
+  cache.set(key, unique);
+  console.info(`[Fetch] ${lang}: ${unique.length} articles`);
+  return unique;
+}
+
+/* ── SEARCH FILTER ────────────────────────────────────── */
+function applyFilters(articles) {
+  let res = articles;
+  if (searchQuery) {
+    const q = searchQuery.toLowerCase();
+    res = res.filter(a =>
+      a.title.toLowerCase().includes(q) ||
+      a.description.toLowerCase().includes(q) ||
+      a.source.name.toLowerCase().includes(q)
+    );
+  }
+  if (activeFilters.size > 0) {
+    res = res.filter(a => activeFilters.has(a.source.name));
+  }
+  return res;
+}
+
+/* ── RENDER ───────────────────────────────────────────── */
+function fmtDate(iso, lang) {
+  try {
+    return new Date(iso).toLocaleDateString(lang === 'es' ? 'es-ES' : 'en-US', {
+      year: 'numeric', month: 'long', day: 'numeric'
+    });
+  } catch(_) { return ''; }
+}
+
+function makeCard(art, lang) {
+  const isEn = lang === 'en';
+  const img  = art.urlToImage || FALLBACK_IMG;
+  const date = fmtDate(art.publishedAt, lang);
+  const src  = art.source.name;
+  const badge = art.sourceType === 'RSS'
+    ? `<span class="badge-rss" aria-label="Fuente RSS">✦ RSS</span>`
+    : `<span class="badge-verified" aria-label="Fuente API">✓ API</span>`;
+
+  const el = document.createElement('article');
+  el.className = 'card';
+  el.innerHTML = `
+    <img class="card-img" src="${E.attr(img)}" alt="" loading="lazy"
+         onerror="this.src='${FALLBACK_IMG}'">
+    <div class="card-body">
+      <div class="card-meta">
+        <time class="card-date" datetime="${E.attr(art.publishedAt)}">${date}</time>
+        <span class="card-source" title="${E.attr(src)}">${E.html(src)}</span>
+      </div>
+      <h3 class="card-title">${E.html(art.title)}${badge}</h3>
+      ${art.description ? `<p class="card-desc">${E.html(art.description)}</p>` : ''}
+      <div class="card-actions">
+        <a class="read-more"
+           href="${E.attr(art.url)}"
+           target="_blank" rel="noopener noreferrer"
+           aria-label="${isEn ? 'Read more' : 'Leer más'}: ${E.attr(art.title)}">
+          ${isEn ? 'Read more →' : 'Leer más →'}
+        </a>
+        ${isEn ? `<button class="translate-btn"
+            data-title="${E.attr(art.title)}"
+            data-desc="${E.attr(art.description)}"
+            aria-label="Traducir al español">
+            <i class="fas fa-language" aria-hidden="true"></i> Traducir
+          </button>` : ''}
+      </div>
+    </div>`;
+  return el;
+}
+
+function renderPage(grid, articles, lang, p) {
+  if (p === 1) grid.innerHTML = '';
+  const slice = articles.slice((p - 1) * PER_PAGE, p * PER_PAGE);
+  if (!slice.length && p === 1) {
+    grid.innerHTML = `<div class="state-msg">
+      <i class="fas fa-moon" aria-hidden="true"></i>
+      <span>${lang === 'es' ? 'Ninguna visión encontrada.' : 'No visions found.'}</span>
+    </div>`;
+    return;
+  }
+  const frag = document.createDocumentFragment();
+  slice.forEach(a => frag.appendChild(makeCard(a, lang)));
+  grid.appendChild(frag);
+}
+
+/* ── CHIPS ────────────────────────────────────────────── */
+function buildChips() {
+  [...chipsBar.querySelectorAll('.chip')].forEach(c => c.remove());
+  const sources = [...new Set([
+    ...allEs.map(a => a.source.name),
+    ...allEn.map(a => a.source.name)
+  ])].filter(Boolean).sort((a, b) => a.localeCompare(b));
+
+  sources.forEach(src => {
+    const btn = document.createElement('button');
+    btn.className = 'chip';
+    btn.textContent = src;
+    btn.setAttribute('aria-pressed', 'false');
+    btn.addEventListener('click', () => {
+      if (activeFilters.has(src)) {
+        activeFilters.delete(src);
+        btn.classList.remove('active');
+        btn.setAttribute('aria-pressed', 'false');
+      } else {
+        activeFilters.add(src);
+        btn.classList.add('active');
+        btn.setAttribute('aria-pressed', 'true');
+      }
+      applyAndRender();
+    });
+    chipsBar.appendChild(btn);
+  });
+}
+
+/* ── APPLY + RENDER ───────────────────────────────────── */
+function applyAndRender() {
+  page = 1;
+  filteredEs = applyFilters(allEs);
+  filteredEn = applyFilters(allEn);
+  if (mode !== 'en') renderPage(gridEs, filteredEs, 'es', 1);
+  if (mode !== 'es') renderPage(gridEn, filteredEn, 'en', 1);
+  refreshLoadMore();
+}
+
+function refreshLoadMore() {
+  const moreEs = mode !== 'en' && filteredEs.length > page * PER_PAGE;
+  const moreEn = mode !== 'es' && filteredEn.length > page * PER_PAGE;
+  loadMoreBtn.style.display = (moreEs || moreEn) ? 'inline-block' : 'none';
+}
+
+/* ── MODE ─────────────────────────────────────────────── */
+function setMode(m) {
+  mode = m;
+  localStorage.setItem('ocult_mode', m);
+  colEs.style.display = m === 'en'   ? 'none'  : 'block';
+  colEn.style.display = m === 'es'   ? 'none'  : 'block';
+  document.querySelectorAll('.lang-tab').forEach(btn => {
+    const a = btn.dataset.mode === m;
+    btn.classList.toggle('active', a);
+    btn.setAttribute('aria-pressed', String(a));
+  });
+  loadMoreBtn.textContent = m === 'en' ? 'Summon more visions' : 'Cargar más visiones';
+  applyAndRender();
+}
+
+/* ── TRANSLATE ────────────────────────────────────────── */
+async function doTranslate(btn) {
+  if (btn.disabled) return;
+  const card    = btn.closest('.card');
+  const titleEl = card.querySelector('.card-title');
+  const descEl  = card.querySelector('.card-desc');
+
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Traduciendo…';
+
+  try {
+    const combined = `${btn.dataset.title} ||| ${btn.dataset.desc}`;
+    const res = await fetch(
+      `https://api.mymemory.translated.net/get?q=${encodeURIComponent(combined)}&langpair=en|es`
+    );
+    if (!res.ok) throw new Error('Translation API error');
+    const data = await res.json();
+    const [tTitle, tDesc] = (data.responseData?.translatedText || '').split(' ||| ');
+
+    // preserve badge inside title
+    const badgeEl = titleEl.querySelector('.badge-verified, .badge-rss');
+    const badgeHtml = badgeEl ? badgeEl.outerHTML : '';
+    if (tTitle?.trim() && titleEl)
+      titleEl.innerHTML = E.html(tTitle.trim()) + badgeHtml;
+    if (tDesc?.trim() && descEl)
+      descEl.textContent = tDesc.trim();
+
+    btn.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> Traducido';
+    btn.setAttribute('aria-label', 'Traducción completada');
+  } catch {
+    btn.innerHTML = '<i class="fas fa-exclamation-triangle" aria-hidden="true"></i> Error';
+    setTimeout(() => {
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fas fa-language" aria-hidden="true"></i> Traducir';
+      btn.setAttribute('aria-label', 'Traducir al español');
+    }, 3000);
+  }
+}
+
+/* ── INIT ─────────────────────────────────────────────── */
+async function init(forceRefresh = false) {
+  if (isLoading) return;
+  isLoading = true;
+  loadMoreBtn.style.display = 'none';
+  loadMoreBtn.disabled = true;
+
+  if (forceRefresh || !allEs.length) {
+    gridEs.innerHTML = `<div class="state-msg"><i class="fas fa-skull fa-pulse" aria-hidden="true"></i><span>Invocando noticias en español…</span></div>`;
+    gridEn.innerHTML = `<div class="state-msg"><i class="fas fa-skull fa-pulse" aria-hidden="true"></i><span>Summoning news in English…</span></div>`;
+  }
+
+  try {
+    [allEs, allEn] = await Promise.all([
+      fetchAll('es', forceRefresh),
+      fetchAll('en', forceRefresh)
+    ]);
+    buildChips();
+    setMode(mode);
+  } catch (err) {
+    console.error(err);
+    const errEs = `<div class="state-msg error"><i class="fas fa-exclamation-triangle"></i><span>Error al cargar. <button onclick="init(true)" style="color:inherit;background:none;border:none;cursor:pointer;text-decoration:underline">Reintentar</button></span></div>`;
+    const errEn = `<div class="state-msg error"><i class="fas fa-exclamation-triangle"></i><span>Failed to load. <button onclick="init(true)" style="color:inherit;background:none;border:none;cursor:pointer;text-decoration:underline">Retry</button></span></div>`;
+    if (!allEs.length) gridEs.innerHTML = errEs;
+    if (!allEn.length) gridEn.innerHTML = errEn;
+  } finally {
+    isLoading = false;
+    loadMoreBtn.disabled = false;
+    refreshBtn.classList.remove('spinning');
+  }
+}
+
+/* ── EVENTS ───────────────────────────────────────────── */
+
+document.querySelectorAll('.lang-tab').forEach(btn => {
+  btn.addEventListener('click', () => setMode(btn.dataset.mode));
+});
+
+loadMoreBtn.addEventListener('click', () => {
+  page++;
+  if (mode !== 'en') renderPage(gridEs, filteredEs, 'es', page);
+  if (mode !== 'es') renderPage(gridEn, filteredEn, 'en', page);
+  refreshLoadMore();
+});
+
+gridEn.addEventListener('click', e => {
+  const btn = e.target.closest('.translate-btn');
+  if (btn) doTranslate(btn);
+});
+
+let searchTimer;
+searchInput.addEventListener('input', e => {
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(() => {
+    searchQuery = e.target.value.trim();
+    applyAndRender();
+  }, 280);
+});
+
+refreshBtn.addEventListener('click', () => {
+  if (isLoading) return;
+  refreshBtn.classList.add('spinning');
+  init(true);
+});
+
+document.addEventListener('keydown', e => {
+  if ((e.ctrlKey || e.metaKey) && e.key === 'f' && document.activeElement !== searchInput) {
+    e.preventDefault();
+    searchInput.focus();
+    searchInput.select();
+  }
+});
+
+/* ── BOOT ─────────────────────────────────────────────── */
+init();
+</script>
+</body>
+</html>
