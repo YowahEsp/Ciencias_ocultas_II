@@ -730,7 +730,7 @@ const API = {
 const PROXY        = 'https://corsproxy.io/?url=';
 const FALLBACK_IMG = 'https://images.unsplash.com/photo-1509023464722-18d996393ca8?w=400&h=250&fit=crop&auto=format&q=80';
 const CACHE_TTL    = 30 * 60 * 1000;
-const PER_PAGE     = 9;   // 9 cards → load-more aparece con ≥10 artículos
+const PER_PAGE     = 6;   // 6 cards → load-more aparece con ≥7 artículos
 
 /* ── OCCULT FILTER KEYWORDS ───────────────────────────── */
 const OCCULT_KW = new Set([
@@ -880,7 +880,7 @@ async function fetchNewsdata(lang) {
   if (!res.ok) throw new Error(`Newsdata ${res.status}`);
   const data = await res.json();
   return (data.results || [])
-    .filter(a => isOccult(a.title, a.description))
+    .filter(a => isOccult(a.title, a.description, true)) // query ya filtra por tema
     .map(a => norm({
       title: a.title, url: a.link, publishedAt: a.pubDate,
       description: a.description, urlToImage: a.image_url,
@@ -897,7 +897,7 @@ async function fetchTheNews(lang) {
   if (!res.ok) throw new Error(`TheNewsAPI ${res.status}`);
   const data = await res.json();
   return (data.data || [])
-    .filter(a => isOccult(a.title, a.description))
+    .filter(a => isOccult(a.title, a.description, true)) // query ya filtra por tema
     .map(a => norm({
       title: a.title, url: a.url, publishedAt: a.published_at,
       description: a.description, urlToImage: a.image_url,
@@ -913,7 +913,7 @@ async function fetchCurrents(lang) {
   if (!res.ok) throw new Error(`Currents ${res.status}`);
   const data = await res.json();
   return (data.news || [])
-    .filter(a => isOccult(a.title, a.description))
+    .filter(a => isOccult(a.title, a.description, true)) // query ya filtra por tema
     .map(a => norm({
       title: a.title, url: a.url, publishedAt: a.published,
       description: a.description,
@@ -932,7 +932,7 @@ async function fetchMediastack(lang) {
   if (!res.ok) throw new Error(`Mediastack ${res.status}`);
   const data = await res.json();
   return (data.data || [])
-    .filter(a => isOccult(a.title, a.description))
+    .filter(a => isOccult(a.title, a.description, true)) // query ya filtra por tema
     .map(a => norm({
       title: a.title, url: a.url, publishedAt: a.published_at,
       description: a.description, urlToImage: a.image,
